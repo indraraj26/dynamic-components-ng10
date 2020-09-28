@@ -17,7 +17,7 @@ export class ChildModuleComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   async load() {
-    const component =  (await this.dynamicComponentLoader.getComponent()).DynamicComponent;
+    const component =  (await this.dynamicComponentLoader.getComponent('dynamic-component1'));
     const factory = this.resolver.resolveComponentFactory(component);
 
     this.container.clear();
@@ -27,7 +27,7 @@ export class ChildModuleComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   async load1() {
-    const component =  (await this.dynamicComponentLoader.getComponent1()).TestComponent;
+    const component =  (await this.dynamicComponentLoader.getComponent('test-component'));
     const factory = this.resolver.resolveComponentFactory(component);
 
     this.container.createComponent(factory);
