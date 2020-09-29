@@ -17,8 +17,9 @@ export class ChildModuleComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   async load() {
-    const component =  (await this.dynamicComponentLoader.getComponent('dynamic-component1'));
-    const factory = this.resolver.resolveComponentFactory(component);
+    const factory =  (await this.dynamicComponentLoader.getComponent('app-dynamic',
+    () => import('./../dynamic/dynamic.module').then(m => m.DynamicModule)));
+    // const factory = this.resolver.resolveComponentFactory(component);
 
     this.container.clear();
     this.container.createComponent(factory);
@@ -27,9 +28,18 @@ export class ChildModuleComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   async load1() {
-    const component =  (await this.dynamicComponentLoader.getComponent('test-component'));
-    const factory = this.resolver.resolveComponentFactory(component);
+    const factory =  (await this.dynamicComponentLoader.getComponent('app-my-second-level',
+    () =>  import('./../dynamic/dynamic.module').then(m => m.DynamicModule)));
 
+    this.container.clear();
+    this.container.createComponent(factory);
+  }
+
+  async load2() {
+    const factory =  (await this.dynamicComponentLoader.getComponent('app-second-level',
+    () =>  import('./../second-level/second-level.module').then(m => m.SecondLevelModule)));
+
+    this.container.clear();
     this.container.createComponent(factory);
   }
 
