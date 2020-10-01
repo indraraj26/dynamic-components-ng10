@@ -9,8 +9,10 @@ import { ParentComponent } from '../parent/parent.component';
 export class Child2Component implements OnInit {
 
   constructor(
-    @Optional() @Inject(forwardRef(() => ParentComponent)) private policyGrid: ParentComponent) { 
-      console.log(policyGrid);
+    @Optional() @Inject(forwardRef(() => ParentComponent)) private myGrid: ParentComponent) { 
+      if(myGrid) {
+        console.log(myGrid);
+      }
     }
 
   ngOnInit(): void {
